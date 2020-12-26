@@ -51,7 +51,11 @@ public class BananaRedressorTest {
         fruitSourceChannel.send(message);
 
         // Then
-        Fruit actualFruit = (Fruit) successChannel.receive().getPayload();
+        Message<?> received = successChannel.receive();
+        assertThat(received)
+            .isNotNull();
+
+        Fruit actualFruit = (Fruit) received.getPayload();
         assertThat(actualFruit)
             .hasRace(Race.BANANA)
             .hasColor(Color.YELLOW)

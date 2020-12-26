@@ -31,7 +31,7 @@ public class HttpBananaInterceptor implements ChannelInterceptor {
                 throw new IOException("Unexpected code " + response);
             }
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             log.error("Unable to notify banana server");
         }
     }

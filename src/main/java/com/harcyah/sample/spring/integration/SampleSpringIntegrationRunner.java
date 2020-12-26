@@ -30,7 +30,7 @@ public class SampleSpringIntegrationRunner implements CommandLineRunner {
         for (int i = 0; i < 100; i++) {
             Race race = Race.values()[random.nextInt(Race.values().length)];
             Color color = COLORS[random.nextInt(COLORS.length)];
-            Float angle = new Random().nextFloat();
+            Float angle = random.nextFloat();
             Fruit fruit = new Fruit(UUID.randomUUID(), race, color, angle);
             notifier.onNewFruit(fruit);
             Uninterruptibles.sleepUninterruptibly(1, TimeUnit.SECONDS);

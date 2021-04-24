@@ -17,7 +17,7 @@ public class Fruit {
     private final UUID id;
     private final Race race;
     private final Color color;
-    private final float angle;
+    private final double angle;
 
     @Override
     public String toString() {
@@ -25,7 +25,8 @@ public class Fruit {
             id.toString(),
             race,
             color.getRed(), color.getGreen(), color.getBlue(),
-            angle);
+            angle
+        );
     }
 
 }

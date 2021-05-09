@@ -24,7 +24,7 @@ import org.springframework.messaging.support.ChannelInterceptor;
 public class SampleSpringIntegrationContext {
 
     @Bean
-    public MessageChannel isBananaChannel() {
+    public MessageChannel isBananaMessageChannel() {
         return MessageChannels.direct()
             .interceptor(httpNotifierInterceptor())
             .get();
@@ -35,24 +35,24 @@ public class SampleSpringIntegrationContext {
     }
 
     @Bean
-    public MessageChannel isNoBananaChannel() {
+    public MessageChannel isNoBananaMessageChannel() {
         return MessageChannels.direct().get();
     }
 
     @Bean
-    public IntegrationFlow isBananaFlow() {
+    public IntegrationFlow isBananaIntegrationFlow() {
         return IntegrationFlows.from("isBananaChannel")
             .transform(bananaColorizer())
             .transform(bananaTwister())
-            .channel(successChannel())
+            .channel(successQueueChannel())
             .get();
     }
 
     @Bean
-    public IntegrationFlow isNoBananaFlow() {
+    public IntegrationFlow isNoBananaIntegrationFlow() {
         return IntegrationFlows.from("isNoBananaChannel")
             .transform(bananaConverter())
-            .channel(successChannel())
+            .channel(successQueueChannel())
             .get();
     }
 
@@ -84,13 +84,13 @@ public class SampleSpringIntegrationContext {
     }
 
     @Bean
-    public QueueChannel successChannel() {
+    public QueueChannel successQueueChannel() {
         return MessageChannels.queue().get();
     }
 
     @Bean
     @ConditionalOnProperty("bananas.runner")
-    public SampleSpringIntegrationRunner fruitCommandLineRunner(FruitSourceNotifier notifier) {
+    public SampleSpringIntegrationRunner sampleSpringIntegrationRunner(FruitSourceNotifier notifier) {
         return new SampleSpringIntegrationRunner(notifier);
     }
 

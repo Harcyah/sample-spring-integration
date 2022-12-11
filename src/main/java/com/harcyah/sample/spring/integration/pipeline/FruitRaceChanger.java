@@ -3,7 +3,7 @@ package com.harcyah.sample.spring.integration.pipeline;
 import com.harcyah.sample.spring.integration.domain.Fruit;
 import com.harcyah.sample.spring.integration.domain.Race;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.integration.transformer.GenericTransformer;
+import org.springframework.integration.core.GenericTransformer;
 
 @Slf4j
 public class FruitRaceChanger implements GenericTransformer<Fruit, Fruit> {

@@ -2,7 +2,7 @@ package com.harcyah.sample.spring.integration.pipeline;
 
 import com.harcyah.sample.spring.integration.domain.Fruit;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.integration.transformer.GenericTransformer;
+import org.springframework.integration.core.GenericTransformer;
 
 import java.awt.Color;
 

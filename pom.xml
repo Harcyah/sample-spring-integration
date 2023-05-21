@@ -21,12 +21,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-integration</artifactId>
-            <version>3.0.6</version>
+            <version>3.1.0</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-logging</artifactId>
-            <version>3.0.6</version>
+            <version>3.1.0</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -36,7 +36,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <version>3.0.6</version>
+            <version>3.1.0</version>
             <scope>test</scope>
             <exclusions>
                 <exclusion>
@@ -48,7 +48,7 @@
         <dependency>
             <groupId>org.springframework.integration</groupId>
             <artifactId>spring-integration-test</artifactId>
-            <version>6.0.5</version>
+            <version>6.1.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>

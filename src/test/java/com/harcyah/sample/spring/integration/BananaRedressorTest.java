@@ -23,7 +23,7 @@ import static com.harcyah.sample.spring.integration.Assertions.assertThat;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @SpringIntegrationTest
-public class BananaRedressorTest {
+class BananaRedressorTest {
 
     @Autowired
     private MessageChannel fruitSourceChannel;
@@ -32,17 +32,17 @@ public class BananaRedressorTest {
     private QueueChannel successChannel;
 
     @BeforeEach
-    public void before() {
+    void before() {
         successChannel.clear();
     }
 
     @AfterEach
-    public void after() {
+    void after() {
         successChannel.clear();
     }
 
     @Test
-    public void testWithMalformedBanana() {
+    void testWithMalformedBanana() {
         // Given
         Fruit fruit = new Fruit(UUID.randomUUID(), Race.BANANA, Color.RED, 0.f);
         Message<Fruit> message = MessageBuilder.withPayload(fruit).build();
@@ -63,7 +63,7 @@ public class BananaRedressorTest {
     }
 
     @Test
-    public void testWithKiwi() {
+    void testWithKiwi() {
         // Given
         Fruit fruit = new Fruit(UUID.randomUUID(), Race.KIWI, Color.RED, 0.f);
         Message<Fruit> message = MessageBuilder.withPayload(fruit).build();

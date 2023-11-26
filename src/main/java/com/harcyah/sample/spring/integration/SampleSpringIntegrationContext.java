@@ -14,7 +14,6 @@ import org.springframework.integration.channel.QueueChannel;
 import org.springframework.integration.config.EnableIntegration;
 import org.springframework.integration.core.GenericSelector;
 import org.springframework.integration.dsl.IntegrationFlow;
-import org.springframework.integration.dsl.IntegrationFlows;
 import org.springframework.integration.dsl.MessageChannels;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.support.ChannelInterceptor;
@@ -27,7 +26,7 @@ public class SampleSpringIntegrationContext {
     public MessageChannel isBananaMessageChannel() {
         return MessageChannels.direct()
             .interceptor(httpNotifierInterceptor())
-            .get();
+            .getObject();
     }
 
     private ChannelInterceptor httpNotifierInterceptor() {
@@ -36,12 +35,12 @@ public class SampleSpringIntegrationContext {
 
     @Bean
     public MessageChannel isNoBananaMessageChannel() {
-        return MessageChannels.direct().get();
+        return MessageChannels.direct().getObject();
     }
 
     @Bean
     public IntegrationFlow isBananaIntegrationFlow() {
-        return IntegrationFlows.from("isBananaChannel")
+        return IntegrationFlow.from("isBananaChannel")
             .transform(bananaColorizer())
             .transform(bananaTwister())
             .channel(successQueueChannel())
@@ -50,7 +49,7 @@ public class SampleSpringIntegrationContext {
 
     @Bean
     public IntegrationFlow isNoBananaIntegrationFlow() {
-        return IntegrationFlows.from("isNoBananaChannel")
+        return IntegrationFlow.from("isNoBananaChannel")
             .transform(bananaConverter())
             .channel(successQueueChannel())
             .get();
@@ -58,7 +57,7 @@ public class SampleSpringIntegrationContext {
 
     @Bean
     public IntegrationFlow bananaRedressorIntegrationFlow() {
-        return IntegrationFlows.from("fruitSourceChannel")
+        return IntegrationFlow.from("fruitSourceChannel")
             .filter(noFuckingKiwis())
             .<Fruit, Boolean> route(f -> f.getRace() == Race.BANANA, m -> m
                 .channelMapping(false, "isBananaChannel")
@@ -85,7 +84,7 @@ public class SampleSpringIntegrationContext {
 
     @Bean
     public QueueChannel successQueueChannel() {
-        return MessageChannels.queue().get();
+        return MessageChannels.queue().getObject();
     }
 
     @Bean

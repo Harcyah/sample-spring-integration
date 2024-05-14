@@ -72,7 +72,7 @@ class BananaRedressorTest {
         fruitSourceChannel.send(message);
 
         // Then
-        assertThat(successChannel.getQueueSize()).isEqualTo(0);
+        assertThat(successChannel.getQueueSize()).isZero();
     }
 
 }

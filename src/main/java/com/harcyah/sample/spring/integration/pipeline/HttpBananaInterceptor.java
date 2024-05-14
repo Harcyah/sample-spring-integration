@@ -37,8 +37,11 @@ public class HttpBananaInterceptor implements ChannelInterceptor {
             if (response.statusCode() != 200) {
                 log.error("Unable to notify banana server");
             }
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException e) {
             log.error("Unable to notify banana server");
+        } catch (InterruptedException e) {
+            log.error("Unable to notify banana server, interrupting thread");
+            Thread.currentThread().interrupt();
         }
     }
 
